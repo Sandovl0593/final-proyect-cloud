@@ -33,7 +33,7 @@ def lambda_handler(event, context):
         Media={
             'MediaFileUri': f's3://{video_dir}'
         },
-        OutputBucketName=f'subtitle-{name_video}',
+        OutputBucketName=f'subtitiled_videos',
         OutputKey=output_key
     )
     return {
