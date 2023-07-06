@@ -1,36 +1,42 @@
 import json
 import boto3
+from botocore.exceptions import ClientError
 
 def lambda_handler(event, context):
-    # Entrada (json)
-    tenant_id = event['tenant_id']
-    user_id = event['user_id']
-    user_profile = event['user_profile']
 
-    # Proceso
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('proy_users')
-    alumno = {
-        'tenant_id': tenant_id,
-        'user_id': user_id,
-        'user_profile': user_profile
-    }
-    response = table.put_item(Item=alumno)
+    table = dynamodb.Table("proy-users")
 
-    # Publicar en SNS
-    sns_client = boto3.client('sns')
-    response_sns = sns_client.publish(
-    	TopicArn = 'arn:aws:sns:us-east-1: ....',
-    	Subject = f'Bienvenido User {user_id}',
-        Message = json.dumps(alumno),
-        MessageAttributes = {
-            'tenant_id': {'DataType': 'String', 'StringValue': tenant_id }
+    tenant_id = event["tenant_id"]
+
+    nombre_usuario = event['nombre_usuario']
+    nombre = event['nombre']
+    telefono = event['telefono']
+    direccion = event['direccion']
+    email = event['email']
+    contrasenha = event['contrasenha']
+    
+    try:
+        # Inserta el nuevo usuario en DynamoDB
+        table.put_item(
+            Item={
+                "tenant_id": tenant_id,
+                'username': nombre_usuario,
+                'name': nombre,
+                'phone': telefono,
+                'address': direccion,
+                'email': email,
+                'password': contrasenha
+            }
+        )
+        
+        return {
+            'statusCode': 200,
+            'body': 'Nuevo usuario registrado'
         }
-    )
-    print(response_sns)
-
-    # Salida (json)
-    return {
-        'statusCode': 200,
-        'response': response
-    }
+    
+    except ClientError as e:
+        return {
+            'statusCode': 500,
+            'body': 'Error en el registro debido a: ' + str(e)
+        }

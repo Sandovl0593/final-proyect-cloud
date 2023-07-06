@@ -6,10 +6,10 @@
           "Service": "sns.amazonaws.com"
         },
         "Action": "sqs:SendMessage",
-        "Resource": "arn:aws:sqs:us-east-1:  ....",
+        "Resource": "arn:aws:sqs:us-east-1:267046291430:cola-nuevaCompra",
         "Condition": {
           "ArnEquals": {
-            "aws:SourceArn": "arn:aws:sns:us-east-1: ...."
+            "aws:SourceArn": "arn:aws:sns:us-east-1:267046291430:tema-nuevaCompra"
           }
         }
       }
