@@ -14,7 +14,7 @@ def lambda_handler(event, context):
 
     message = {
         'tenant_id': archivo_json['tenant_id'],
-        'nombre_prod': archivo_json['nombre_prod'],
+        'user_id': archivo_json['user_id'],
         'info': archivo_json['info']
     }
     print(message) # Revisar en CloudWatch
