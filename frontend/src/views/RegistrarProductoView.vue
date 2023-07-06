@@ -50,7 +50,7 @@ export default {
         marca: this.marca,
         categoria: this.categoria
       };
-      fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod`, {
+      fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/register_producto`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'

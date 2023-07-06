@@ -27,7 +27,7 @@
     </table>
   </div>
   <nav>
-    <router-link to="/home" class="casa-link">Casa</router-link>
+    <router-link to="/" class="casa-link">Casa</router-link>
   </nav>
   </div>
 </template>

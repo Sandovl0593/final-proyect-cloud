@@ -6,7 +6,6 @@ def lambda_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('proy-productos')
     
-    tenant_id = event["tenant_id"]
     usuario_l = event['usuario']
     
     try:
