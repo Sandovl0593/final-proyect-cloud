@@ -45,7 +45,7 @@ export default {
       let usuario_p = {
         usuario: this.$store.state.mi_usuario
       };
-      await fetch(`http://LB-ProyParcial-1528179989.us-east-1.elb.amazonaws.com:8001/utecshop/tienda`, {
+      await fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/tienda`, {
         method: "POST",
         headers: {
           "Content-type": "application/json"
@@ -55,13 +55,15 @@ export default {
         .then((resp) => resp.json())
         .then((datos) => (this.productos = datos));
     },
+
     async comprar(codigo_p, usuario_v) {
       let n_compra = {
         codigo_producto: codigo_p,
         usuario_comprador: this.$store.state.mi_usuario,
-        usuario_vendedor: usuario_v
+        usuario_vendedor: usuario_v,
+        tenant_id: "UTEC_SHOP",
       };
-      await fetch(`http://LB-ProyParcial-1528179989.us-east-1.elb.amazonaws.com:8001/utecshop/registrar_compra`, {
+      await fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/register_compra`, {
         method: "POST",
         headers: {
           "Content-type": "application/json"

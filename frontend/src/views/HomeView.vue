@@ -10,8 +10,7 @@
         <div class="button-container">
           <router-link to="/comprar" class="button">Comprar</router-link>
           <router-link to="/productos" class="button">Mis productos</router-link>
-          <router-link to="/inventario" class="button">Mis compras</router-link>
-          <router-link to="/" class="button">Logout</router-link>
+          <router-link to="/registrar" class="button">Registrar usuario</router-link>
         </div>
       </div>
     </div>

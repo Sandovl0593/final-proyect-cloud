@@ -48,7 +48,7 @@ export default {
     casa(){
         this.$store.dispatch("accion_act_usuario", this.nombre_usuario)
         this.$store.dispatch("accion_act_contra", this.contrasenha)
-        this.$router.push('/home')
+        this.$router.push('/')
       },
       registrar_nombre(e){
         this.nombre = e.target.value
@@ -69,9 +69,11 @@ export default {
         this.contrasenha = e.target.value
       },
       async registrar_usuario(){
-        let n_usuario =  {nombre: this.nombre, telefono: this.telefono, direccion: this.direccion,
+        let n_usuario =  {
+          tenant_id: "UTEC_SHOP",
+          nombre: this.nombre, telefono: this.telefono, direccion: this.direccion,
           nombre_usuario: this.nombre_usuario, email: this.email, contrasenha: this.contrasenha}
-        await fetch('http://LB-ProyParcial-1528179989.us-east-1.elb.amazonaws.com:8000/utecshop/register', {
+        await fetch('https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/register_user', {
           method: 'POST',
           headers: {
             'Content-type': 'application/json'
