@@ -11,6 +11,7 @@
           <router-link to="/comprar" class="button">Comprar</router-link>
           <router-link to="/productos" class="button">Mis productos</router-link>
           <router-link to="/registrar" class="button">Registrar usuario</router-link>
+          <router-link to="/" class="button">Logout</router-link>
         </div>
       </div>
     </div>
@@ -83,14 +84,14 @@ export default {
     };
   },
   methods: {
-    async obtenerUsuarios() {
-      await fetch(`http://LB-ProyParcial-1528179989.us-east-1.elb.amazonaws.com:8000/utecshop/usuarios`)
-        .then((resp) => resp.json())
-        .then((datos) => (this.usuarios = datos));
-    }
+    // async obtenerUsuarios() {
+    //   await fetch(`http://LB-ProyParcial-1528179989.us-east-1.elb.amazonaws.com:8000/utecshop/usuarios`)
+    //     .then((resp) => resp.json())
+    //     .then((datos) => (this.usuarios = datos));
+    // }
   },
   created() {
-    this.obtenerUsuarios();
+    // this.obtenerUsuarios();
   }
 };
 </script>

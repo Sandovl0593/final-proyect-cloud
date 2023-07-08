@@ -12,17 +12,29 @@ def lambda_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('proy_users')
 
+    tenant_id = archivo_json["tenant_id"]
+
+    username = archivo_json['nombre_usuario']
+    name = archivo_json['nombre']
+    phone = archivo_json['telefono']
+    address = archivo_json['direccion']
+    email = archivo_json['email']
+    password = archivo_json['contrasenha']
+
     message = {
-        'tenant_id': archivo_json['tenant_id'],
-        'user_id': archivo_json['user_id'],
-        'user_profile': archivo_json['user_profile']
+        'tenant_id': tenant_id,
+        'username': username,
+        'name': name,
+        'phone': phone,
+        'address': address,
+        'email': email,
+        'password': password
     }
-    print(message) # Revisar en CloudWatch
 
     response = table.put_item(Item=message)
 
     # Salida (json)
     return {
         'statusCode': 200,
-        'response': response
+        'response': json.dumps(response)
     }

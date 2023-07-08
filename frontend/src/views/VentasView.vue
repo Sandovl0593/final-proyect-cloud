@@ -4,7 +4,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Código</th>
           <th>Nombre</th>
           <th>Precio</th>
           <th>Marca</th>
@@ -13,7 +12,6 @@
       </thead>
       <tbody>
         <tr v-for="producto of productos" :key="producto.codigo">
-          <td>{{ producto.codigo }}</td>
           <td>{{ producto.nombre }}</td>
           <td>S/ {{ producto.precio }}</td>
           <td>{{ producto.marca }}</td>
@@ -40,7 +38,7 @@ export default {
   methods: {
     async obtener_productos() {
       let usuario_p = { usuario: this.$store.state.mi_usuario };
-      await fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/inventario`, {
+      await fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/productos`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -49,6 +47,8 @@ export default {
       })
         .then((resp) => resp.json())
         .then((datos) => (this.productos = datos));
+      
+      this.productos.filter(el => (el.username == this.$store.state.mi_usuario))
     },
   },
   created() {

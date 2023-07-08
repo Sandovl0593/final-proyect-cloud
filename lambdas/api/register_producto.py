@@ -1,3 +1,4 @@
+import json
 import boto3
 from botocore.exceptions import ClientError
 from random import randint
@@ -7,8 +8,8 @@ def lambda_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('proy-productos')
     
-    codigo = 'P' + str(randint(1, 90000))
-    usuario = event['usuario']
+    codigo_p = 'P' + str(randint(1, 90000))
+    username = event['usuario']
     nombre = event['nombre']
     precio = event['precio']
     marca = event['marca']
@@ -18,8 +19,8 @@ def lambda_handler(event, context):
 
         table.put_item(
             Item={
-                "codigo_p": codigo,
-                'username': usuario,
+                "codigo_p": codigo_p,
+                'username': username,
                 "nombre": nombre,
                 'precio': precio,
                 'marca': marca,
@@ -29,7 +30,7 @@ def lambda_handler(event, context):
         
         return {
             'statusCode': 200,
-            'body': 'Nuevo producto insertado'
+            'body': "Producto registrado con exito"
         }
     
     except ClientError as e:

@@ -4,7 +4,6 @@
     <table>
       <thead>
         <tr>
-          <th>Código</th>
           <th>Vendedor</th>
           <th>Nombre</th>
           <th>Precio</th>
@@ -15,19 +14,18 @@
       </thead>
       <tbody>
         <tr v-for="producto in productos" :key="producto.codigo">
-          <td>{{ producto.codigo }}</td>
-          <td>{{ producto.usuario_nombre }}</td>
+          <td>{{ producto.username }}</td>
           <td>{{ producto.nombre }}</td>
-          <td>{{ producto.precio }}</td>
+          <td>S/ {{ producto.precio }}</td>
           <td>{{ producto.marca }}</td>
           <td>{{ producto.tipo }}</td>
-          <td><button class="comprar-button" @click="comprar(producto.codigo, producto.usuario_nombre)">Comprar</button></td>
+          <td><button class="comprar-button" @click="comprar(producto.codigo, producto.username)">Comprar</button></td>
         </tr>
       </tbody>
     </table>
   </div>
   <nav>
-    <router-link to="/" class="casa-link">Casa</router-link>
+    <router-link to="/home" class="casa-link">Casa</router-link>
   </nav>
   </div>
 </template>
@@ -45,7 +43,7 @@ export default {
       let usuario_p = {
         usuario: this.$store.state.mi_usuario
       };
-      await fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/tienda`, {
+      await fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/productos`, {
         method: "POST",
         headers: {
           "Content-type": "application/json"
@@ -54,14 +52,16 @@ export default {
       })
         .then((resp) => resp.json())
         .then((datos) => (this.productos = datos));
+
+       this.productos.filter(el => (el.username != this.$store.state.mi_usuario))
     },
 
     async comprar(codigo_p, usuario_v) {
       let n_compra = {
+        tenant_id: "UTEC_SHOP",
         codigo_producto: codigo_p,
         usuario_comprador: this.$store.state.mi_usuario,
-        usuario_vendedor: usuario_v,
-        tenant_id: "UTEC_SHOP",
+        usuario_vendedor: usuario_v
       };
       await fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/register_compra`, {
         method: "POST",

@@ -48,7 +48,7 @@ export default {
     casa(){
         this.$store.dispatch("accion_act_usuario", this.nombre_usuario)
         this.$store.dispatch("accion_act_contra", this.contrasenha)
-        this.$router.push('/')
+        this.$router.push('/home')
       },
       registrar_nombre(e){
         this.nombre = e.target.value
