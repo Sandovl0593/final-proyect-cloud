@@ -53,7 +53,7 @@ export default {
         .then((resp) => resp.json())
         .then((datos) => (this.productos = datos));
 
-       this.productos.filter(el => (el.username != this.$store.state.mi_usuario))
+       this.productos = this.productos.body.filter(el => (el.username != this.$store.state.mi_usuario))
     },
 
     async comprar(codigo_p, usuario_v) {

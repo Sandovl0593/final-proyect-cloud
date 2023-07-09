@@ -42,7 +42,7 @@ export default {
     productos() {
       this.$router.push('/productos');
     },
-    registrar_producto() {
+    async registrar_producto() {
       let n_producto = {
         usuario: this.usuario_nombre,
         nombre: this.nombre,
@@ -50,7 +50,7 @@ export default {
         marca: this.marca,
         categoria: this.categoria
       };
-      fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/register_producto`, {
+      await fetch(`https://n9h5lbsqu4.execute-api.us-east-1.amazonaws.com/prod/register_producto`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
