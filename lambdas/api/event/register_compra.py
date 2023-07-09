@@ -29,7 +29,7 @@ def lambda_handler(event, context):
             Message = json.dumps(register),
             MessageAttributes = {
                 'tenant_id': {'DataType': 'String', 'StringValue': tenant_id },
-                'username': {'DataType': 'String', 'StringValue': comprador }
+                'comprador': {'DataType': 'String', 'StringValue': comprador }
             }
         )
         

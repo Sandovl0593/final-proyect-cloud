@@ -18,7 +18,7 @@
           <td>{{ producto.nombre }}</td>
           <td>S/ {{ producto.precio }}</td>
           <td>{{ producto.marca }}</td>
-          <td>{{ producto.tipo }}</td>
+          <td>{{ producto.categoria }}</td>
           <td><button class="comprar-button" @click="comprar(producto.codigo, producto.username)">Comprar</button></td>
         </tr>
       </tbody>
