@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="producto of productos" :key="producto.codigo">
+        <tr v-for="producto of productos" :key="producto.codigo_p">
           <td>{{ producto.nombre }}</td>
           <td>S/ {{ producto.precio }}</td>
           <td>{{ producto.marca }}</td>
@@ -46,10 +46,19 @@ export default {
         body: JSON.stringify(usuario_p),
       })
         .then((resp) => resp.json())
-        .then((datos) => (this.productos = datos));
-      
-      console.log(this.productos);
-      this.productos = this.productos.body.filter(el => (el.username == this.$store.state.mi_usuario))
+        .then(data => {
+          this.productos = JSON.parse(data);
+          this.filtrarProductos();
+      });
+    },
+    filtrarProductos() {
+      const nombreUsuarioEspecifico = this.$store.state.mi_usuario;
+        this.productos = this.productos.reduce((resultado, elemento) => {
+          if (elemento.username === nombreUsuarioEspecifico) {
+            resultado.push(elemento);
+          }
+          return resultado;
+        }, []);
     },
   },
   created() {

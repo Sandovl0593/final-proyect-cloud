@@ -13,13 +13,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="producto in productos" :key="producto.codigo">
+        <tr v-for="producto in productos" :key="producto.codigo_p">
           <td>{{ producto.username }}</td>
           <td>{{ producto.nombre }}</td>
           <td>S/ {{ producto.precio }}</td>
           <td>{{ producto.marca }}</td>
           <td>{{ producto.categoria }}</td>
-          <td><button class="comprar-button" @click="comprar(producto.codigo, producto.username)">Comprar</button></td>
+          <td><button class="comprar-button" @click="comprar(producto.codigo_p, producto.username)">Comprar</button></td>
         </tr>
       </tbody>
     </table>
@@ -50,10 +50,20 @@ export default {
         },
         body: JSON.stringify(usuario_p)
       })
-        .then((resp) => resp.json())
-        .then((datos) => (this.productos = datos));
-
-       this.productos = this.productos.body.filter(el => (el.username != this.$store.state.mi_usuario))
+      .then((resp) => resp.json())
+        .then(data => {
+          this.productos = JSON.parse(data);
+          this.filtrarProductos();
+        });
+      },
+      filtrarProductos() {
+        const nombreUsuarioEspecifico = this.$store.state.mi_usuario;
+        this.productos = this.productos.reduce((resultado, elemento) => {
+          if (elemento.username !== nombreUsuarioEspecifico) {
+            resultado.push(elemento);
+          }
+          return resultado;
+        }, []);
     },
 
     async comprar(codigo_p, usuario_v) {
