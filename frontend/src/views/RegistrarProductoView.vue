@@ -3,7 +3,7 @@
   <div class="filtro">
   </div>
     <div class="register-container">
-      <h2>Registro</h2>
+      <h2>Registrar Producto</h2>
       <div class="form-group">
         <label>Nombre</label>
         <input type="text" v-model="nombre" class="form-control">
@@ -20,7 +20,7 @@
         <label>Categoria</label>
         <input type="text" v-model="categoria" class="form-control">
       </div>
-      <button v-on:click="registrar_producto" class="btn btn-primary">Registrar producto</button>
+      <button v-on:click="registrar_producto" class="btn btn-primary">Registrar</button>
     </div>
   </div>
 </template>

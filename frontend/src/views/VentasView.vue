@@ -70,7 +70,7 @@ export default {
 <style scoped>
 /* Clase global para el fondo de la página */
 .page-background {
-  background-image: url('../assets/fondotablas.jpg');
+  background-image: url('../assets/fondorojotablas.jpg');
   background-size: cover;
   opacity: 0.9;
   background-position: center;
@@ -108,21 +108,25 @@ th {
 
 
 tbody {
-  background: rgb(255, 255, 255, 0.5);
+  background: rgba(255, 233, 233, 0.829);
 }
 
 nav a.button {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
+  padding: 12px 24px;
+  background-color: #000;
   color: #fff;
   text-decoration: none;
+  border-radius: 50px;
+  font-family: 'BebasNeue-Regular', sans-serif;
+  font-size: 18px;
+  border: none;
   transition: background-color 0.3s ease;
+  width: 150px;
 }
 
 .button:hover {
   background-color: #0056b3;
+  transform: scale(1.1);
 }
 
 .button:active {

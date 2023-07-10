@@ -91,47 +91,9 @@ export default {
 </script>
 
 <style scoped>
-.compras {
-  margin-top: 20px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-nav {
-  margin-top: 20px;
-}
-
-nav a.casa-link {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-nav a.casa-link:hover {
-  background-color: #0056b3;
-}
-
 .global {
   position: relative;
-  background-image: url('../assets/fondotablas.jpg');
+  background-image: url('../assets/fondorojotablas.jpg');
   background-size: cover;
   opacity: 0.9;
   height: 100vh;
@@ -181,5 +143,28 @@ button.comprar-button:hover {
 
 button.comprar-button:active {
   background-color: #333;
+}
+
+nav {
+  margin-top: 20px;
+}
+
+nav a.casa-link {
+  padding: 12px 24px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-family: 'BebasNeue-Regular', sans-serif;
+  font-size: 18px;
+  border: none;
+  transition: background-color 0.3s ease;
+  width: 150px;
+}
+
+nav a.casa-link:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+
 }
 </style>
